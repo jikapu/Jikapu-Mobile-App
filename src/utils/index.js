@@ -1,0 +1,1 @@
+export {widthToDP,heightToDP} from '@/utils/Responsive'

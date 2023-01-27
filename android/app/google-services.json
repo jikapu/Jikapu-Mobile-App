@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "337437583529",
+    "project_id": "jikapu",
+    "storage_bucket": "jikapu.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:337437583529:android:1db595edf366d0e38621b8",
+        "android_client_info": {
+          "package_name": "com.jikapu"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "337437583529-j3ekgd38dvlfsq1oj4oel8r8ee7tmnjh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.jikapu",
+            "certificate_hash": "39b7893d3577b129b6240c267ecaf7e36ad12c5f"
+          }
+        },
+        {
+          "client_id": "337437583529-jkpnmg222va6gddj9rq7k916vmkabd6f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBxWaodSTNM4IyMAhNK4OjbHhtVls5EdSY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "337437583529-jkpnmg222va6gddj9rq7k916vmkabd6f.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "337437583529-ekdo469tp5tmh9la3dvnuf86fmkt4iji.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.jikapu"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
