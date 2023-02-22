@@ -48,8 +48,6 @@ export const Orders = ({ route, navigation }) => {
   };
 
   const handleClick = async (screen, id, name) => {
-    console.log("sub category id", id);
-
     switch (screen) {
       case "ProductDetails":
         navigation.navigate(NAVIGATION.productDetails, {

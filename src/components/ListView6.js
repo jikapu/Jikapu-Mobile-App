@@ -68,7 +68,7 @@ export const ListView6 = (props) => {
             />
           </View>
           <Text style={styles.storeText}>By: {storeName}</Text>
-          <Text style={styles.priceText}>{"KES" + price.toLocaleString()}</Text>
+          <Text style={styles.priceText}>{"KES"+ " "+price.toLocaleString()}</Text>
           <View style={{ flexDirection: "row",marginTop:hp(0.3) }}>
              {productColors?.length > 0 ? (
               productColors?.map((i) => {

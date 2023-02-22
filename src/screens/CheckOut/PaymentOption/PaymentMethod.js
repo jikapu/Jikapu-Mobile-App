@@ -25,10 +25,6 @@ export const PaymentMethod = ({ route, navigation }) => {
   const { shippingAddress, billingAddress, cardDetails, status, isFresh } =
     route.params;
   const dispatch = useDispatch();
-
-  console.log("shiiping address", shippingAddress);
-  console.log("billing address", billingAddress);
-  console.log("status,isFresh", status, isFresh);
   const city = shippingAddress.city;
   const isLoading = useSelector((state) => state.common.isLoading);
   const [paymentMode, setPaymentMode] = useState("");

@@ -77,7 +77,6 @@ export const Cards = ({ navigation }) => {
 
   const checkCard = (which) => {
     setCardType(which);
-    console.log("card", which);
   };
 
   const addCardDetails = () => {
@@ -111,7 +110,6 @@ export const Cards = ({ navigation }) => {
       };
       dispatch(
         addUserCard(navigation, params, (res) => {
-          console.log(res);
           setAddCard(false);
           dispatch(getAllCards(navigation));
         })
@@ -162,7 +160,7 @@ export const Cards = ({ navigation }) => {
 
       <View style={{ marginTop: hp(3), paddingHorizontal: wp(4) }}>
         <View style={styles.listView}>
-          {cardsListData.length > 0 ? (
+          {cardsListData && cardsListData.length > 0 ? (
             <FlatList
               contentContainerStyle={{
                 flexDirection: "column",

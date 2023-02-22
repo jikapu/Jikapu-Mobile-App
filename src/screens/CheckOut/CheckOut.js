@@ -35,9 +35,8 @@ export const CheckOut = ({ route, navigation }) => {
   const isLoading = useSelector((state) => state.common.isLoading);
   const dispatch = useDispatch();
   const addressListData = useSelector((state) => state.user.addressListData);
-  console.log(addressListData, "addressListData");
-  const [click, setClick] = useState(addressListData.length - 1);
-  
+  const [click, setClick] = useState( addressListData && addressListData.length ? addressListData.length - 1 : null);
+  /* 
   const filterData = addressListData.map((e) => {
     return {
       id: e?._id,
@@ -50,11 +49,12 @@ export const CheckOut = ({ route, navigation }) => {
       zip: e?.zip,
     };
   });
-  console.log("filter", filterData);
-  const defaultaddress = addressListData[addressListData.length - 1];
-  console.log("default address", defaultaddress);
+  */
+  
+  const defaultaddress = addressListData && addressListData[addressListData.length] ? addressListData[addressListData.length - 1] : null;
   const [bAddress, setBAddress] = useState(defaultaddress);
-  const [open, setOpen] = useState(false);
+  /* 
+   const [open, setOpen] = useState(false);
   const [items, setItems] = useState(
     addressListData.map((item) => ({
       label: `${
@@ -69,6 +69,8 @@ export const CheckOut = ({ route, navigation }) => {
       value: item,
     }))
   );
+  */
+ 
    
   useEffect(() => {
    getAllAddress()
@@ -94,7 +96,6 @@ export const CheckOut = ({ route, navigation }) => {
   */
 
   const continueToPayment = () => {
-    console.log("billing address", bAddress);
     navigation.push(NAVIGATION.paymentMethod, {
       billingAddress: bAddress,
       shippingAddress: bAddress,
@@ -115,7 +116,6 @@ export const CheckOut = ({ route, navigation }) => {
 
   const handleClick = (item, index) => {
     setClick(index);
-    console.log("item adress", item);
     setBAddress(item);
     let params = {
       _id: item._id,
@@ -144,7 +144,7 @@ export const CheckOut = ({ route, navigation }) => {
           >
             Address
           </Text>
-          {addressListData.length > 0 ? (
+          {addressListData && addressListData.length > 0 ? (
             <FlatList
               contentContainerStyle={{
                 flexDirection: "column",

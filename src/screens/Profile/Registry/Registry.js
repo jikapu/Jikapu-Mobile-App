@@ -88,10 +88,12 @@ export const Registry = ({ navigation, route }) => {
   const [bAddress, setBAddress] = useState({});
   const [openAdd, setOpenAdd] = useState(false);
   const [itemsAdd, setItemsAdd] = useState(
-    addressListData.map((item) => ({
-      label: item.firstName + " " + item.addressType,
-      value: item._id,
-    }))
+    addressListData && addressListData.map
+      ? addressListData.map((item) => ({
+          label: item.firstName + " " + item.addressType,
+          value: item._id,
+        }))
+      : []
   );
   const [quantity, setQuantity] = useState(1);
   const [showCreate, setShowCreate] = useState(false);
@@ -129,7 +131,7 @@ export const Registry = ({ navigation, route }) => {
   const [totalData, setTotalData] = useState([]);
   const isLoading = useSelector((state) => state.common.isLoading);
   const [regId, setRegId] = useState("");
- 
+
   const [regData, setRegData] = useState([]);
   const [regQuantity, setRegQuantity] = useState(1);
 
@@ -179,14 +181,13 @@ export const Registry = ({ navigation, route }) => {
       quantity: quantity,
     };
     dispatch(
-      addToCart(navigation,params,() => {
+      addToCart(navigation, params, () => {
         navigation.navigate(NAVIGATION.cart);
       })
     );
   };
 
   const handleClick = async (screen, id, name) => {
-    console.log("sub category id", id);
     switch (screen) {
       case "ProductDetails":
         setModalVisible(false);
@@ -219,7 +220,6 @@ export const Registry = ({ navigation, route }) => {
 
   const checkPerson = (who) => {
     setPerson(who);
-    console.log("who", who);
     if (who === "A Friend") {
       setShowFDetail(true);
       setSelf(0);
@@ -530,7 +530,7 @@ export const Registry = ({ navigation, route }) => {
                     width: 32,
                     height: 36,
                   }}
-                  // containerStyle={{ marginTop: hp(2) }}
+                   containerStyle={{ marginTop: hp(2) }}
                 ></InputField>
                 <DropDownPicker
                   open={open1}

@@ -1,10 +1,11 @@
-import React, {  useState } from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
   TouchableOpacity,
   TouchableWithoutFeedback,
   Image,
+  Platform,
   Keyboard,
 } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
@@ -15,15 +16,18 @@ import {
   checkSocialLogin,
   onPressFacebook,
   onPressGoogle,
+  onPressApple,
 } from "@/actions";
 import { Button, ErrorView, Loader, InputField } from "@/components";
 import { strings } from "@/localization";
 import { styles } from "@/screens/Login/Login.styles";
 import { shadow, spacing, typography } from "@/theme";
+import {heightToDP as hp, widthToDP as wp} from '@/utils';
 import {
   logo,
   google,
   rightArrow,
+  apple,
   facebook,
   show,
   hide,
@@ -123,6 +127,29 @@ export const Login = ({ navigation }) => {
       );
     }
   };
+
+  const appleSignIn = async () => {
+    const logindata = await onPressApple();
+    console.log("apple login data", logindata);
+    const userId = await AsyncStorage.getItem("suid");
+    const email = await AsyncStorage.getItem("semail");
+   // const fullName = await AsyncStorage.getItem("sfullName");
+  //  const [first, last] = fullName.split(" ");
+    if (logindata) {
+      let params = {
+        isSocialLogin: true,
+        email: email,
+        firstName: '',
+        lastName: '',
+        socialLoginId: userId,
+      };
+      dispatch(
+        checkSocialLogin(params, () => {
+          navigation.navigate(NAVIGATION.home);
+        })
+      );
+    }
+  };
   return (
     <KeyboardAwareScrollView
       showsVerticalScrollIndicator={false}
@@ -131,7 +158,7 @@ export const Login = ({ navigation }) => {
     >
       {<Loader isLoading={isLoading} />}
       <View style={styles.container}>
-        <Image source={logo} style={styles.logo}  />
+        <Image source={logo} style={styles.logo} />
         <View style={styles.formContainer}>
           <Text style={styles.signIn}>{strings.login.signin}</Text>
           <View style={{ marginTop: spacing.s }}>
@@ -218,7 +245,25 @@ export const Login = ({ navigation }) => {
               <Image source={google} />
               <Text style={typography.label}>{strings.login.GOOGLE}</Text>
             </TouchableOpacity>
+           
           </View>
+          {Platform.OS === 'ios' && (
+              <TouchableOpacity
+              style={[styles.sociallogin,{ width: wp(88),marginTop:hp(2),justifyContent:"center",}]}
+              onPress={() => {
+                appleSignIn();
+              }}
+              >
+                <View style={{ padding: 10 }}>
+                  <Image
+                    style={{ height: 20, width: 20 }}
+                    source={apple}
+                    resizeMode="cover"
+                  />
+                </View>
+                <Text style={typography.label}>{strings.login.APPLE} </Text>
+              </TouchableOpacity>
+            )}
           <View
             style={{
               flexDirection: "row",

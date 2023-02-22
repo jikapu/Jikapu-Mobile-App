@@ -29,6 +29,8 @@ export const en = {
     OR_LOGIN: 'or login with',
     FACEBOOK: 'Facebook',
     GOOGLE: 'Google',
+   // APPLE:'Apple',
+    APPLE:'Sign in with Apple',
     NEW_TO: 'New to Jikapu?',
     CREATE_ACCOUNT: 'Create your Jikapu account',
     SUBMIT: 'Submit',

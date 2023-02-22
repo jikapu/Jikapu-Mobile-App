@@ -41,6 +41,7 @@ export { guestLogin } from '@/actions/auth/UserActions';
 export { checkSocialLogin } from '@/actions/auth/UserActions';
 export { onPressGoogle} from '@/actions/auth/UserActions';
 export { onPressFacebook } from '@/actions/auth/UserActions';
+export { onPressApple } from '@/actions/auth/UserActions';
 export { editSubscriptionsList } from '@/actions/auth/UserActions';
 export { deleteSubscriptionProduct } from '@/actions/auth/UserActions';
 export { getUserDetails } from '@/actions/auth/UserActions';

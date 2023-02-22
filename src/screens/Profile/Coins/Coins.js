@@ -82,10 +82,10 @@ export const Coins = ({ navigation }) => {
                         <View style={{marginTop:hp(2),  }}>
                             <Text  style={typography.pText}>Recharge Balance</Text>
                             <View style={{flex:1,flexDirection:"row",marginTop:hp(1.2)}}>
-                                <TouchableOpacity style={styles.btnStyle}>
+                                <TouchableOpacity style={styles.btnStyle} onPress={() => alert("Coming Soon")}>
                                     <Text  style={typography.pText}>Mpesa</Text>
                                 </TouchableOpacity>
-                                <TouchableOpacity style={[styles.btnStyle,{marginLeft:wp(4)}]}>
+                                <TouchableOpacity style={[styles.btnStyle,{marginLeft:wp(4)}]} onPress={() => alert("Coming Soon")}>
                                     <Text style={typography.pText}>ipay</Text>
                                 </TouchableOpacity>
                             </View>

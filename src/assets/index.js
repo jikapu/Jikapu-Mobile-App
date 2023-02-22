@@ -1,6 +1,7 @@
 export { default as logo } from '@/assets/images/logo.png';
 export { default as google } from '@/assets/icons/g.png';
 export { default as facebook } from '@/assets/icons/f.png';
+export { default as apple } from '@/assets/icons/apple.png';
 export { default as back } from '@/assets/icons/back.png';
 export { default as next } from '@/assets/icons/next.png';
 export { default as searchIcon } from '@/assets/icons/search.png';

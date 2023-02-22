@@ -70,10 +70,11 @@ export const GeneralInfo = ({ navigation }) => {
     userData.profileImage ? userData.profileImage : ""
   );
   const [firstName, setFirstName] = useState(
-    userData.firstName ? userData.firstName : ""
+    userData?.firstName === "na" ? ""
+    : userData?.firstName 
   );
   const [lastName, setLastName] = useState(
-    userData.lastName ? userData.lastName : ""
+    userData.lastName === "na" ? "" : userData.lastName
   );
   const [email, setEmail] = useState(userData.email ? userData.email : "");
   const [phone, setPhone] = useState(
@@ -240,12 +241,6 @@ export const GeneralInfo = ({ navigation }) => {
     })
       .then((res) => {
         setModalVisible(false);
-        console.log("res: " + res);
-        console.log("res: " + JSON.stringify(res));
-        console.log("res path ", res.path);
-        console.log("res type ", res.mime);
-        console.log("res filename ", res.filename);
-
         RNFetchBlob.fetch(
           "POST",
           uploadUrl,
@@ -269,7 +264,7 @@ export const GeneralInfo = ({ navigation }) => {
             let response = JSON.parse(resp.data);
             console.log("resp =====>", response);
             let file = response.data[0].filePath;
-            console.log("fle", file);
+       
             setPiclocal(file);
             let params = {
               profileImage: file,
@@ -336,7 +331,6 @@ export const GeneralInfo = ({ navigation }) => {
             let response = JSON.parse(resp.data);
             console.log("resp =====>", response);
             let file = response.data[0].filePath;
-            console.log("fle", file);
             setPiclocal(file);
             let params = {
               profileImage: file,
@@ -345,7 +339,6 @@ export const GeneralInfo = ({ navigation }) => {
 
             dispatch(
               updateUserData(navigation, params, (res) => {
-                console.log(res);
                 Toast.show({
                   type: "success",
                   text1: "Profile image uploaded successfully",
@@ -359,7 +352,6 @@ export const GeneralInfo = ({ navigation }) => {
           });
       })
       .catch((error) => {
-        console.log(error);
         if (error.code === "E_PICKER_CANCELLED") {
           return false;
         }
@@ -368,7 +360,6 @@ export const GeneralInfo = ({ navigation }) => {
 
   const checkGender = (which) => {
     setGender(which);
-    console.log("gender", which);
   };
 
   const setCountryVisible = () => {

@@ -87,7 +87,6 @@ export const JikapuFresh = ({ route, navigation }) => {
           });
           modify_data.push(new_data);
           setCatListProducts(modify_data);
-          console.log("modfifdis", modify_data);
         })
       );
     }
@@ -102,7 +101,6 @@ export const JikapuFresh = ({ route, navigation }) => {
     dispatch(
       getProductsList(navigation, seasonParam, (res) => {
         setSeasonData(res.data.docs);
-        console.log("res season according to store id data", res);
       })
     );
     getProductsByCat();
@@ -116,8 +114,6 @@ export const JikapuFresh = ({ route, navigation }) => {
   };
 
   const handleClick = async (screen, id, name, parentId) => {
-    console.log("_id", id);
-
     switch (screen) {
       case "ProductCatalog":
         navigation.navigate(NAVIGATION.productCatalog, {

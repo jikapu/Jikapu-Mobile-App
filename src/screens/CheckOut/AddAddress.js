@@ -195,7 +195,6 @@ export const AddAddress = ({ route, navigation }) => {
         device: Platform.OS,
       };
       let bAddress = params;
-      console.log(params, "paramsahbasdjascgasv");
       dispatch(
         addUserAddress(navigation, params, (res) => {
           navigation.navigate(NAVIGATION.paymentMethod, {
@@ -212,7 +211,6 @@ export const AddAddress = ({ route, navigation }) => {
   const getOneTimeLocation = () => {
     Geolocation.getCurrentPosition(
       (position) => {
-        console.log("position", position);
         setLatitude(position.coords.latitude);
         setLongitude(position.coords.longitude);
         getAddressFromCoordinates(latitude, longitude);
@@ -249,7 +247,6 @@ export const AddAddress = ({ route, navigation }) => {
   const requestLocationPermission = async () => {
     if (Platform.OS === "ios") {
       Geolocation.requestAuthorization("always").then((res) => {
-        console.log(res);
         getOneTimeLocation();
       });
     } else {

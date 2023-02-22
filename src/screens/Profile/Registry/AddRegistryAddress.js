@@ -155,7 +155,6 @@ export const AddRegistryAddress = ({ navigation }) => {
         email: email,
         device: Platform.OS
       }
-      console.log(params,"paramsahbasdjascgasv")
       dispatch(addUserAddress(navigation,params, res => {
         navigation.pop()
         dispatch(getAllAddress(navigation));

@@ -1,37 +1,20 @@
-import React, { useEffect, useState } from "react";
-import {
-  Text,
-  View,
-  Keyboard,
-  FlatList,
-  TouchableOpacity,
-  ActivityIndicator,
-  Platform,
-} from "react-native";
+import React, { useState } from "react";
+import { Text, View, Keyboard, TouchableOpacity, Platform } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-import { edit, visa, downArrow, npUp, deleteImg } from "@/assets";
 import { RadioButton, CustomHeader, InputField, Button } from "@/components";
 import moment from "moment";
 import { strings } from "@/localization";
 import { styles } from "@/screens/Profile/Account/Account.styles";
-import { typography, spacing } from "@/theme";
-import { Image } from "react-native-elements";
-import { COLORS, NAVIGATION } from "@/constants";
+import { spacing } from "@/theme";
+import { NAVIGATION } from "@/constants";
 import { heightToDP as hp, widthToDP as wp } from "@/utils";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import { validateIsEmpty, validateName } from "@/utils/Validations";
+import { validateIsEmpty } from "@/utils/Validations";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
-import {
-  addUserCard,
-  getAllCards,
-  deleteCard,
-  updateUserCard,
-} from "@/actions/auth/UserActions";
+import { getAllCards, updateUserCard } from "@/actions/auth/UserActions";
 
 export const EditCard = ({ route, navigation }) => {
-  const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
   const { details } = route.params;
-  console.log("edit address details", details);
   const dispatch = useDispatch();
   const id = details._id;
   const [addCard, setAddCard] = useState(false);
@@ -50,7 +33,6 @@ export const EditCard = ({ route, navigation }) => {
 
   const checkCard = (which) => {
     setCardType(which);
-    console.log("card", which);
   };
 
   const addCardDetails = () => {
@@ -78,7 +60,7 @@ export const EditCard = ({ route, navigation }) => {
         device: Platform.OS,
       };
       dispatch(
-        updateUserCard(navigation,params, (res) => {
+        updateUserCard(navigation, params, (res) => {
           navigation.navigate(NAVIGATION.cardsDetails);
           dispatch(getAllCards());
         })

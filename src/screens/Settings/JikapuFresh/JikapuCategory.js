@@ -92,8 +92,6 @@ export const JikapuCategory = ({ route, navigation }) => {
 
 
   const handleClick = async (screen, id, name, parentId) => {
-    console.log("_id", id);
-
     switch (screen) {
       case "ProductCatalog":
         navigation.navigate(NAVIGATION.productCatalog, {
@@ -121,17 +119,13 @@ export const JikapuCategory = ({ route, navigation }) => {
 
   const selectItem = (item, index) => {
     if (item.children) {
-      console.log("children data", item.children);
       const childData = item.children;
       setCat3Data(childData);
-      console.log(cat3Data, "cat 3 data");
-
       const a = cat2Data;
       for (var i = 0; i < a.length; i++) {
         a[i].status = 1;
       }
       let targetItem = a[index];
-      console.log("target item", targetItem);
       if (targetItem.status == 1) {
         targetItem.status = 0;
       } else {

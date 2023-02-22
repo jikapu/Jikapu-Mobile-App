@@ -1,9 +1,7 @@
 import { StyleSheet,Dimensions } from 'react-native';
-const { width, height } = Dimensions.get('window');
 import { spacing } from '@/theme';
 import {heightToDP as hp, widthToDP as wp} from '@/utils';
 import {COLORS} from '../../constants/colors';
-//const { BORDER_COLOR,BLACK,ERROR_RED , ARROW_COLOR, WHITE } = COLORS;
 
 export const styles = StyleSheet.create({
   container: {

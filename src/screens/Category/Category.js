@@ -119,7 +119,6 @@ export const Category = ({ route, navigation }) => {
       order: -1,
       sort: "rate",
     };
-    console.log("sponsered category data", params);
     dispatch(
       getSponsoredList(navigation, params, (res) => {
         setSponseredData(res.data.docs);
@@ -243,7 +242,6 @@ export const Category = ({ route, navigation }) => {
     }
   };
 
-
   const selectItem = (item, index) => {
     if (item.children) {
       setCat3Data(item.children);
@@ -252,7 +250,6 @@ export const Category = ({ route, navigation }) => {
         a[i].status = 1;
       }
       let targetItem = a[index];
-      console.log("target item", targetItem);
       if (targetItem.status == 1) {
         targetItem.status = 0;
       } else {
@@ -303,9 +300,7 @@ export const Category = ({ route, navigation }) => {
       quantity: quantity,
     };
     isLoggedIn
-      ? dispatch(
-          addToCart(navigation,param)
-        )
+      ? dispatch(addToCart(navigation, param))
       : Alert.alert("", "Please Login to continue", [
           {
             text: "Cancel",
@@ -329,13 +324,12 @@ export const Category = ({ route, navigation }) => {
   };
 
   const selectCat2 = (item, index) => {
-    console.log("selection cat 2", item);
     const a = cat2Data;
     for (var i = 0; i < a.length; i++) {
       a[i].status = 1;
     }
     let targetItem = a[index];
-    console.log("target item", targetItem);
+
     if (targetItem.status == 1) {
       targetItem.status = 0;
     } else {
@@ -345,9 +339,7 @@ export const Category = ({ route, navigation }) => {
 
     dispatch(
       getCategoryAlias(navigation, item?.alias, (res) => {
-        console.log("res select cat 2", res);
         const id = res.dataSelf._id;
-        console.log("item id", id);
         setCat4Data(res.data);
         setAliasId(id);
         getSponsereds(id);
@@ -360,10 +352,8 @@ export const Category = ({ route, navigation }) => {
   };
 
   const selectCat3 = (item) => {
-    console.log("selection cat 3", item);
     dispatch(
       getCategoryAlias(navigation, item?.alias, (res) => {
-        console.log("res select cat 3", res);
         if (res.data.length <= 0) {
           navigation.navigate(NAVIGATION.productCatalog, {
             subCatId: item._id,

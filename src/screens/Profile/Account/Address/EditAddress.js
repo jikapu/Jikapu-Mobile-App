@@ -1,9 +1,7 @@
-import React, { useState, useEffect } from "react";
-import { Text, View, FlatList,ScrollView, TouchableOpacity, ActivityIndicator, Keyboard } from "react-native";
-import { useDispatch, useSelector } from "react-redux";
-import { edit, downArrow, npUp, deleteImg, npRight } from "@/assets";
+import React, { useState } from "react";
+import {  View,ScrollView, Keyboard } from "react-native";
+import { useDispatch, } from "react-redux";
 import {
-  RadioButton,
   CustomHeader,
   InputField,
   Button
@@ -12,21 +10,16 @@ import DropDownPicker from "react-native-dropdown-picker";
 import { strings } from "@/localization";
 import { styles } from "@/screens/Profile/Account/Account.styles";
 import { typography, spacing } from "@/theme";
-import { Image } from "react-native-elements";
 import { COLORS, NAVIGATION } from "@/constants";
 import { heightToDP as hp, widthToDP as wp } from "@/utils";
-
 import {
   validateIsEmpty,
   validateName,
-  validateEmail
 } from '@/utils/Validations';
 import { updateAddress, getAllAddress } from "@/actions/auth/UserActions";
 
 export const EditAddress = ({ route, navigation }) => {
-  const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
   const { details } = route.params;
-  console.log("edit address details", details)
   const dispatch = useDispatch();
   const id = details._id;
   const [addressName, setAddressName] = useState(details.addressName);

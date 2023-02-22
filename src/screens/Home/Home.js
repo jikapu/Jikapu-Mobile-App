@@ -261,7 +261,6 @@ export const Home = ({ navigation }) => {
   };
 
   const handleClearanceCategories = (id, index) => {
-    console.log("clearance id", id);
     setClearanceId(id);
     setCurrentPage(1);
     const a = treeCatData;
@@ -269,7 +268,6 @@ export const Home = ({ navigation }) => {
       a[i].status = 1;
     }
     let targetItem = a[index];
-    console.log("target item", targetItem);
     if (targetItem.status == 1) {
       targetItem.status = 0;
     } else {

@@ -64,6 +64,7 @@ import { spacing, typography } from "@/theme";
 import { COLORS } from "@/constants";
 import { strings } from "@/localization";
 import { storeItem, getItem, removeItem } from "@/utils/AsyncUtils";
+import { deleteAddress } from "../../actions/auth/UserActions";
 
 const wait = (timeout) => {
   return new Promise((resolve) => setTimeout(resolve, timeout));
@@ -71,9 +72,7 @@ const wait = (timeout) => {
 
 export const ProductDetails = ({ route, navigation }) => {
   const dispatch = useDispatch();
-  useEffect(() => {
-    getAllList();
-  }, []);
+
   const isLoading = useSelector((state) => state.common.isLoading);
   const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
   const { productId } = route.params;
@@ -86,14 +85,14 @@ export const ProductDetails = ({ route, navigation }) => {
     (state) => state.home.productSpecificationsData
   );
   const [defaultAddress, setDefaultAddress] = useState(addressListData);
-  const firstName = defaultAddress[0]?.firstName
+  const firstName = defaultAddress && defaultAddress[0] && defaultAddress[0].firstName
     ? defaultAddress[0].firstName
     : "";
-  const city = defaultAddress[0]?.city ? defaultAddress[0].city : "";
-  const countryRegion = defaultAddress[0]?.countryRegion
+  const city = defaultAddress && defaultAddress[0] && defaultAddress[0]?.city ? defaultAddress[0].city : "";
+  const countryRegion = defaultAddress && defaultAddress[0] && defaultAddress[0]?.countryRegion
     ? defaultAddress[0].countryRegion
     : "";
-  const zip = defaultAddress[0]?.zip ? defaultAddress[0].zip : "";
+  const zip =defaultAddress && defaultAddress[0] && defaultAddress[0]?.zip ? defaultAddress[0].zip : "";
   const [sponsoredData, setSponseredData] = useState([]);
 
   const [images, setImages] = useState([defaultImage]);
@@ -134,6 +133,10 @@ export const ProductDetails = ({ route, navigation }) => {
   const [selectSize, setSelectSize] = useState("");
   const [refreshing, setRefreshing] = React.useState(false);
   const scrollViewRef = useRef();
+
+  useEffect(() => {
+    getAllList();
+  }, []);
 
   const getAllList = () => {
     getProductsDetails();
@@ -325,7 +328,6 @@ export const ProductDetails = ({ route, navigation }) => {
       a[i].status = 1;
     }
     let targetItem = a[index];
-    console.log("target item", targetItem);
     if (targetItem.status == 1) {
       targetItem.status = 0;
     } else {
@@ -411,7 +413,7 @@ export const ProductDetails = ({ route, navigation }) => {
                   marginTop: Platform.OS === "ios" ? -hp(4) : -hp(6.8),
                 }}
               />
-              {productDetailsData?.brand ? (
+              {productDetailsData && productDetailsData?.brand ? (
                 <View
                   style={{
                     flexDirection: "row",
@@ -681,7 +683,7 @@ export const ProductDetails = ({ route, navigation }) => {
               </View>
             )}
           </View>
-          {addressListData.length > 0 ? (
+          {addressListData && addressListData.length > 0 ? (
             <View style={{ flexDirection: "row", marginTop: hp(1) }}>
               <View style={{ width: wp(27) }}>
                 <Text style={{ fontSize: wp(3.9), fontWeight: "800" }}>

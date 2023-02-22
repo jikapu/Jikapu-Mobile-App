@@ -3,13 +3,14 @@ import {
   Text,
   View,
   FlatList,
-  ActivityIndicator,ScrollView,
+  ActivityIndicator,
+  ScrollView,
   Image,
   Alert,
   TouchableOpacity,
 } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-import { defaultImg,userImg, npRight, jikapu, searchIcon1 } from "@/assets";
+import { defaultImg, userImg, npRight, jikapu, searchIcon1 } from "@/assets";
 import {
   Button1,
   Loader,
@@ -20,7 +21,15 @@ import {
 import { strings } from "@/localization";
 import { styles } from "@/screens/Profile/Profile.styles";
 import { typography, spacing } from "@/theme";
-import { updateUserData, getUserDetails, uploadPic ,getAllCoupons, getActiveCoupons, getExpiredCoupons, getRedeemedCoupons} from "@/actions/auth/UserActions";
+import {
+  updateUserData,
+  getUserDetails,
+  uploadPic,
+  getAllCoupons,
+  getActiveCoupons,
+  getExpiredCoupons,
+  getRedeemedCoupons,
+} from "@/actions/auth/UserActions";
 import { COLORS, NAVIGATION } from "@/constants";
 import { heightToDP as hp, widthToDP as wp } from "@/utils";
 import { logOut } from "@/actions/auth/UserActions";
@@ -60,7 +69,7 @@ const data = [
     name: strings.profile.track_order,
   },
   */
-  
+
   {
     id: 8,
     name: strings.profile.support,
@@ -75,16 +84,19 @@ export const Profile = ({ navigation }) => {
   const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
   const isLoading = useSelector((state) => state.common.isLoading);
   const userData = useSelector((state) => state.user.userData);
-  const fullName = userData?.firstName + " " + userData?.lastName
-  const phone = userData?.phone
+  const fullName =
+    userData?.firstName === "na" || userData?.lastName === "na"
+      ? " "
+      : userData?.firstName + " " + userData?.lastName;
+  const phone = userData?.phone;
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getUserDetails(navigation))
-    dispatch(getAllCoupons(navigation))
-    dispatch(getActiveCoupons(navigation))
-    dispatch(getExpiredCoupons(navigation))
-    dispatch(getRedeemedCoupons(navigation))
-  }, [])
+    dispatch(getUserDetails(navigation));
+    dispatch(getAllCoupons(navigation));
+    dispatch(getActiveCoupons(navigation));
+    dispatch(getExpiredCoupons(navigation));
+    dispatch(getRedeemedCoupons(navigation));
+  }, []);
 
   const handleItem = (index, item) => {
     switch (item.id) {
@@ -109,7 +121,7 @@ export const Profile = ({ navigation }) => {
       case 7:
         navigation.push(NAVIGATION.myCoupons);
         break;
-        /* 
+      /* 
          case 8:
         navigation.push(NAVIGATION.trackOrders,{
           trackingId:"",
@@ -122,7 +134,7 @@ export const Profile = ({ navigation }) => {
         ///navigation.push(NAVIGATION.support);
         break;
       case 9:
-        signOut()
+        signOut();
         break;
       default:
         break;
@@ -141,7 +153,7 @@ export const Profile = ({ navigation }) => {
         },
         {
           text: "Cancel",
-          onPress: () => { },
+          onPress: () => {},
         },
       ],
       { cancelable: false }
@@ -177,47 +189,45 @@ export const Profile = ({ navigation }) => {
           </TouchableOpacity>
         </View>
       </View>
-     
-        <ScrollView style={{ paddingHorizontal: wp(4) }}>
-          <View style={styles.profileView}>
-            <Image
-              source={userData?.profileImage != null && userData?.profileImage != "" ? { uri: userData?.profileImage } : userImg}
-              style={{ width: 100, height: 100, borderRadius: 50 }}
-              size="large"
-              color="0000ff"
-            />
-            <Text style={styles.userName}>
-              {fullName}
-            </Text>
-            <Text style={styles.contact}>{phone?.toString().substring(3)}</Text>
-          </View>
-          <View style={styles.listView}>
 
-            {data.length > 0 ? (
-              <ScrollView vertical
-                showsVerticalScrollIndicator={false}>
-                <FlatList
-                  contentContainerStyle={{
-                    flexDirection: "column",
-                  }}
-                  data={data}
-                  extraData={data}
-                  keyExtractor={(item, index) => index.toString()}
-                  vertical
-                  showsVerticalScrollIndicator={false}
-                  renderItem={({ item, index }) => (
-                    <Button1
-                      title={item.name}
-                      handlePress={() => handleItem(index, item)}
-                    />
-                  )}
-                />
-              </ScrollView>
-            ) : null}
-          </View>
-        </ScrollView>
-
-      
+      <ScrollView style={{ paddingHorizontal: wp(4) }}>
+        <View style={styles.profileView}>
+          <Image
+            source={
+              userData?.profileImage != null && userData?.profileImage != ""
+                ? { uri: userData?.profileImage }
+                : userImg
+            }
+            style={{ width: 100, height: 100, borderRadius: 50 }}
+            size="large"
+            color="0000ff"
+          />
+          <Text style={styles.userName}>{fullName}</Text>
+          <Text style={styles.contact}>{phone?.toString().substring(3)}</Text>
+        </View>
+        <View style={styles.listView}>
+          {data.length > 0 ? (
+            <ScrollView vertical showsVerticalScrollIndicator={false}>
+              <FlatList
+                contentContainerStyle={{
+                  flexDirection: "column",
+                }}
+                data={data}
+                extraData={data}
+                keyExtractor={(item, index) => index.toString()}
+                vertical
+                showsVerticalScrollIndicator={false}
+                renderItem={({ item, index }) => (
+                  <Button1
+                    title={item.name}
+                    handlePress={() => handleItem(index, item)}
+                  />
+                )}
+              />
+            </ScrollView>
+          ) : null}
+        </View>
+      </ScrollView>
     </View>
   );
 };

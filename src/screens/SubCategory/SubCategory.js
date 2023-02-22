@@ -66,8 +66,6 @@ export const SubCategory = ({ route, navigation }) => {
   };
 
   const handleClick = async (screen, id, name, parentId) => {
-    console.log("_id", id);
-
     switch (screen) {
       case "ProductCatalog":
         navigation.navigate(NAVIGATION.productCatalog, {

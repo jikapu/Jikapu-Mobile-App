@@ -42,9 +42,6 @@ export const PaymentOption = ({ route, navigation }) => {
   const dispatch = useDispatch();
   const isLoading = useSelector((state) => state.common.isLoading);
   const { billingAddress,shippingAddress } = route.params;
-  console.log("shipping address",shippingAddress);
-  console.log("billing address", billingAddress)
-
   const [countryCode, setCountryCode] = useState("");
   const [phone, setPhone] = useState("");
   const [amount, setAmount] = useState("");
@@ -125,7 +122,6 @@ export const PaymentOption = ({ route, navigation }) => {
   };
   const checkCard = (which) => {
     setCardType(which);
-    console.log("card", which);
   };
 
   const addCardDetails = () => {
@@ -158,7 +154,6 @@ export const PaymentOption = ({ route, navigation }) => {
       }
       dispatch(
         addUserCard(params, res => {
-          console.log(res);
           setAddCard(false)
           dispatch(getAllCards());
         })
@@ -177,7 +172,6 @@ export const PaymentOption = ({ route, navigation }) => {
   const handleConfirm = (date) => {
     console.warn("A date has been picked: ", date);
     let dt = moment(date).format("MM/YYYY");
-    console.log(dt)
     setDatePickerVisible(false);
     setExpiry(dt);
     hideDatePicker();

@@ -59,7 +59,6 @@ export const ThankYou = ({ route, navigation }) => {
     };
     dispatch(
       addOrderComplete(navigation, data, (res) => {
-        console.log("add order complete res", res);
         setOrderNo(res?.data?.orderNumber);
         setFirstName(res.data?.customerId?.firstName);
         setLastName(res.data?.customerId?.lastName);

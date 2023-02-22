@@ -250,7 +250,7 @@ export const JFreshCart = ({ route, navigation }) => {
                 It feels so light!
               </Text>
               <Text style={{ fontSize: wp(4) }}>
-                No products added in the cart
+                No products added in the Jikapu fresh cart
               </Text>
             </View>
           )}

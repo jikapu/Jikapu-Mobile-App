@@ -112,7 +112,7 @@ export const Wishlist = ({ route, navigation }) => {
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }
       >
-        {wishlistData.length > 0 ? (
+        { wishlistData && wishlistData.length && wishlistData !== null > 0 ? (
           <FlatList
             contentContainerStyle={{
               flex: 1,
@@ -157,7 +157,10 @@ export const Wishlist = ({ route, navigation }) => {
             )}
           />
         ) : isLoading === false ? (
-          <Text style={{}}>No Data found</Text>
+          <View style={{flex:1,alignItems:"center"}}>
+            <Text >Your wishlist is empty</Text>
+          </View>
+          
         ) : null}
       </ScrollView>
     </View>

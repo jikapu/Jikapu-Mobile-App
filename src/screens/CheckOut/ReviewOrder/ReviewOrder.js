@@ -65,8 +65,6 @@ export const ReviewOrder = ({ route, navigation }) => {
 
   const totalPrice =
     subTotal + shippingPrice + tax - coinsRedeemedValue - couponRedeemedValue;
-  console.log("cipuon", couponRedeemedValue);
-
   const [promoCodeError, setPromoCodeError] = useState("");
   const [coinNumberError, setCoinNumberError] = useState("");
   const [showDes, setShowDes] = useState(true);
@@ -232,12 +230,10 @@ export const ReviewOrder = ({ route, navigation }) => {
             var intervalID = setInterval(async () => {
               dispatch(
                 getOrderDetailsById(navigation, orderId, async (res) => {
-                    console.log("resultSecond", res);
                     if (
                       res.messageID === 200 &&
                       res.data.paymentStatus === "completed"
                     ) {
-                      console.log("mpesa completed");
                       navigation.navigate(NAVIGATION.thankYou, {
                         status: status,
                         isFresh: isFresh,
@@ -249,7 +245,7 @@ export const ReviewOrder = ({ route, navigation }) => {
                       res.messageID === 200 &&
                       res.data.paymentStatus === "cancelled"
                     ) {
-                      console.log("mpeasa cancelled");
+                      Alert.alert("mpeasa cancelled");
                       
                     }
                   }

@@ -45,7 +45,6 @@ export const TrackOrders = ({ route, navigation }) => {
     };
     dispatch(
       trackOrder(navigation, params, (res) => {
-        console.log("track order res", res);
         setTrackData(res.data);
       })
     );
@@ -54,8 +53,6 @@ export const TrackOrders = ({ route, navigation }) => {
   const dispatch = useDispatch();
   const { trackingId, orderDetail } = route.params;
   const [trackData, setTrackData] = useState({});
-  console.log("track data", trackData.status);
-
   const [timelineData, setTimelineData] = useState([
     {
       title: "Order Received",

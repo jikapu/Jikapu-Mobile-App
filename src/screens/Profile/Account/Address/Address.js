@@ -204,7 +204,7 @@ export const Address = ({ navigation }) => {
       >
         <View style={{ marginTop: hp(3), paddingHorizontal: wp(4) }}>
           <View style={styles.listView}>
-            {addressListData.length > 0 ? (
+            { addressListData && addressListData.length > 0 ? (
               <FlatList
                 contentContainerStyle={{
                   flexDirection: "column",
