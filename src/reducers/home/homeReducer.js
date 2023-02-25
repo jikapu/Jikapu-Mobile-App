@@ -108,6 +108,8 @@ export const homeReducer = (state = INITIAL_STATE, action) => {
       return { ...state, storeData:action.payload };
     case TYPES.STORE_LIST_FAIL:
       return { ...state };
+      case TYPES.CLEAR_STORE:
+        return INITIAL_STATE;
     default:
       return state;
   }

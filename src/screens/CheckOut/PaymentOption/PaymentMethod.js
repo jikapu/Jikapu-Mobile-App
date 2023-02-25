@@ -24,8 +24,9 @@ import { npMove, mpaisa, ipay } from "@/assets";
 export const PaymentMethod = ({ route, navigation }) => {
   const { shippingAddress, billingAddress, cardDetails, status, isFresh } =
     route.params;
+    console.log("shipping address",shippingAddress)
   const dispatch = useDispatch();
-  const city = shippingAddress.city;
+  const city = shippingAddress && shippingAddress.city ? shippingAddress.city :'' ;
   const isLoading = useSelector((state) => state.common.isLoading);
   const [paymentMode, setPaymentMode] = useState("");
   const [showBackground1, setShowBackground1] = useState(false);

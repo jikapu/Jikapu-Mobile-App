@@ -24,6 +24,10 @@ import { appleAuth } from "@invertase/react-native-apple-authentication";
 export const sessionLogout = (navigation) => {
   removeItem("token");
   navigation.navigate(NAVIGATION.login);
+  dispatch({
+    type: types.CLEAR_STORE,
+    payload: null,
+  });
 };
 
 export const login = (params, cb) => {

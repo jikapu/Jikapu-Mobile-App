@@ -45,12 +45,39 @@ import {
 
 export const ReviewOrder = ({ route, navigation }) => {
   const { shippingAddress, paymentMode, status, isFresh } = route.params;
+  console.log("shipping addresssssss",shippingAddress)
   const dispatch = useDispatch();
   const userData = useSelector((state) => state.user.userData);
   const addOrderData = useSelector((state) => state.user.addOrderData);
   const orderId = addOrderData && addOrderData._id ? addOrderData._id :null
   const userId = userData?._id;
   const coins = addOrderData?.customerId?.coinCount;
+  const firstName = shippingAddress && shippingAddress.firstName ? shippingAddress.firstName :''
+  const lastName = shippingAddress && shippingAddress.lastName ? shippingAddress.lastName :''
+  const secondLine = shippingAddress && shippingAddress.secondLine ? shippingAddress.secondLine :''
+  const firstLine = shippingAddress && shippingAddress.firstLine ? shippingAddress.firstLine :''
+  const city = shippingAddress && shippingAddress.city ? shippingAddress.city : ' '
+  const countryRegion = shippingAddress && shippingAddress.countryRegion ?  shippingAddress.countryRegion :''
+  const zip = shippingAddress && shippingAddress.zip ? shippingAddress.zip :''
+  const phone = shippingAddress && shippingAddress.phone ? shippingAddress.phone  :''
+/*
+ 
+{shippingAddress.secondLine +
+                  "  " +
+                  shippingAddress.firstLine +
+                  "  " +
+                  shippingAddress.city +
+                  " " +
+                  shippingAddress.countryRegion +
+                  " " +
+                  shippingAddress.zip}
+              </Text>
+              <Text style={[typography.label, { marginTop: hp(0.5) }]}>
+                Phone: {shippingAddress.phone}
+*/
+
+  
+
 
   // Calculate Order summary data
   const tax = addOrderData && addOrderData.tax ? addOrderData.tax : 0;
@@ -115,7 +142,7 @@ export const ReviewOrder = ({ route, navigation }) => {
   };
 
   const calculatedelivery = () => {
-    if (shippingAddress.city == "Nairobi") {
+    if (city === "Nairobi") {
       if (addOrderData?.subTotal >= 3500) {
         setShippingPrice(0);
       }
@@ -383,21 +410,21 @@ export const ReviewOrder = ({ route, navigation }) => {
                 {strings.profile.shippingAdd}
               </Text>
               <Text style={[typography.label, { marginTop: hp(0.5) }]}>
-                {shippingAddress.firstName + " " + shippingAddress.lastName}
+                {firstName + " " + lastName}
               </Text>
               <Text style={typography.label}>
-                {shippingAddress.secondLine +
+                {secondLine +
                   "  " +
-                  shippingAddress.firstLine +
+                  firstLine +
                   "  " +
-                  shippingAddress.city +
+                  city +
                   " " +
-                  shippingAddress.countryRegion +
+                  countryRegion +
                   " " +
-                  shippingAddress.zip}
+                  zip}
               </Text>
               <Text style={[typography.label, { marginTop: hp(0.5) }]}>
-                Phone: {shippingAddress.phone}
+                Phone: {phone}
               </Text>
               <TouchableOpacity onPress={() => setModalVisible(true)}>
                 <Text

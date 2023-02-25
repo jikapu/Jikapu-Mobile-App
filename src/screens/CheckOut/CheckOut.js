@@ -35,6 +35,7 @@ export const CheckOut = ({ route, navigation }) => {
   const isLoading = useSelector((state) => state.common.isLoading);
   const dispatch = useDispatch();
   const addressListData = useSelector((state) => state.user.addressListData);
+  console.log("address",addressListData)
   const [click, setClick] = useState( addressListData && addressListData.length ? addressListData.length - 1 : null);
   /* 
   const filterData = addressListData.map((e) => {
@@ -51,8 +52,11 @@ export const CheckOut = ({ route, navigation }) => {
   });
   */
   
-  const defaultaddress = addressListData && addressListData[addressListData.length] ? addressListData[addressListData.length - 1] : null;
-  const [bAddress, setBAddress] = useState(defaultaddress);
+  const defaultaddress = addressListData && addressListData[addressListData.length] && addressListData.length >= 2 ? addressListData[addressListData.length - 1] :addressListData[0];
+  console.log("default address",defaultaddress)
+  const [bAddress, setBAddress] = useState([]);
+
+  
   /* 
    const [open, setOpen] = useState(false);
   const [items, setItems] = useState(
@@ -74,6 +78,10 @@ export const CheckOut = ({ route, navigation }) => {
    
   useEffect(() => {
    getAllAddress()
+  }, []);
+
+  useEffect(() => {
+    setBAddress(defaultaddress);
   }, []);
 
   /*

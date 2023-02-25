@@ -24,6 +24,8 @@ export const commonReducer = (state = INITIAL_STATE, action) => {
         isSessionError: true,
         sessionExpireMessage: action.payload,
       };
+      case types.CLEAR_STORE:
+        return INITIAL_STATE;
     default:
       return state;
   }

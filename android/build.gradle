@@ -10,6 +10,7 @@ buildscript {
         // Any of the following will work
         googlePlayServicesVersion      = "17.0.0"
         googlePlayServicesAuthVersion = "19.2.0"
+        kotlinVersion = "1.8.0"
         // playServicesVersion         = "17.0.0"
         // playServicesLocationVersion = "17.0.0"
     }

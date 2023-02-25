@@ -119,6 +119,8 @@ const userReducer = (state = initialState, action) => {
       return { ...state, orderCompleteData: action.payload };
     case TYPES.ORDER_COMPLETE_FAIL:
       return { ...state, orderCompleteData: null };
+      case TYPES.CLEAR_STORE:
+        return { };
     default:
       return state;
   }
